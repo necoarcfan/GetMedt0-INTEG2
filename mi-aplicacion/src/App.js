@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Usuarios from './Usuarios';
+import Reservas from './Reservas';
 import './App.css';
 
 function App() {
+  const [selectedUserId, setSelectedUserId] = useState(null); // Para manejar el usuario seleccionado
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Gestión de Usuarios y Reservas</h1>
+      {/* Componente para mostrar la lista de usuarios */}
+      <Usuarios onSelectUser={setSelectedUserId} />
+      {/* Mostrar las reservas del usuario seleccionado */}
+      {selectedUserId && <Reservas userId={selectedUserId} />}
     </div>
   );
 }
 
 export default App;
+
